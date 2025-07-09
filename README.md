@@ -45,3 +45,10 @@ ImageCaptionGenerator/
 ```bash
 git clone https://github.com/yourusername/image-caption-generator.git
 cd image-caption-generator
+
+### 2. Create Virtual Environment (Optional)
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+
+### 3. Install Requirements
+pip install -r requirements.txt

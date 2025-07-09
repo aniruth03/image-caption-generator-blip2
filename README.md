@@ -28,4 +28,20 @@ It runs locally on CPU or GPU, offering a clean and responsive interface for rea
 ---
 
 ## Project Structure
+ImageCaptionGenerator/
+├── app.py # Flask backend
+├── templates/
+│ └── index.html # Frontend UI
+├── static/
+│ └── style.css # CSS styling
+├── README.md # Documentation
+└── requirements.txt # Python dependencies
 
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/image-caption-generator.git
+cd image-caption-generator

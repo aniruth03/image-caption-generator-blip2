@@ -1,2 +1,31 @@
-# image-caption-generator-blip2
-The Image Caption Generator is a web app that uses the BLIP2-Flan-T5 model to create captions for uploaded images. Built with Flask and JavaScript, it processes images locally and displays accurate, real-time descriptions. The interface is simple, clean, and designed for desktop use.
+# Image Caption Generator
+
+The Image Caption Generator is a web-based application that uses AI to generate natural language captions for uploaded images.  
+It integrates the BLIP2-Flan-T5 model to interpret image content and produce accurate, context-aware descriptions.  
+The system is built using Python, Flask, HTML, CSS, and JavaScript.  
+It runs locally on CPU or GPU, offering a clean and responsive interface for real-time caption generation.
+
+---
+
+## Features
+
+- Upload and preview images in-browser
+- Generate human-like image captions using BLIP2-Flan-T5
+- Works with both CPU and GPU (CUDA-enabled)
+- Fully local execution – no cloud API or internet dependency
+- Simple and clean desktop-focused user interface
+
+---
+
+## How It Works
+
+1. User uploads an image via the interface.
+2. Image is previewed before submission.
+3. Clicking “Generate Caption” sends the image to the Flask backend.
+4. The backend processes the image and uses BLIP2 to generate a caption.
+5. The caption is returned and displayed under the image.
+
+---
+
+## Project Structure
+

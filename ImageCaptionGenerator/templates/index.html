@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Caption Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <h1>Image Caption Generator</h1>
+
+      <div id="preview"></div>
+
+      <input type="file" id="fileElem" accept="image/*" hidden>
+      <button id="chooseBtn">Choose Image</button>
+      <button id="generateBtn" disabled>Generate Caption</button>
+
+      <!-- Hidden until caption is generated -->
+      <p id="caption-container" style="display: none;">
+        <strong>Caption:</strong> <span id="caption-result"></span>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const chooseBtn = document.getElementById('chooseBtn');
+    const generateBtn = document.getElementById('generateBtn');
+    const fileInput = document.getElementById('fileElem');
+    const preview = document.getElementById('preview');
+    const captionContainer = document.getElementById('caption-container');
+    const captionResult = document.getElementById('caption-result');
+
+    let selectedFile = null;
+
+    chooseBtn.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+      selectedFile = fileInput.files[0];
+      if (selectedFile) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          preview.innerHTML = `<img src="${reader.result}" alt="preview">`;
+        };
+        reader.readAsDataURL(selectedFile);
+        generateBtn.disabled = false;
+        captionContainer.style.display = 'none'; // Hide old caption when new image is selected
+      }
+    });
+
+    generateBtn.addEventListener('click', () => {
+      if (!selectedFile) return;
+
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+
+      captionResult.textContent = 'Generating caption...';
+      captionContainer.style.display = 'block';
+
+      fetch('/caption', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          captionResult.textContent = data.caption ? data.caption : 'No caption generated.';
+        })
+        .catch(() => {
+          captionResult.textContent = 'Error uploading image.';
+        });
+    });
+  </script>
+</body>
+</html>
